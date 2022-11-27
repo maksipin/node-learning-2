@@ -9,13 +9,37 @@ document.addEventListener("click", (event) => {
 });
 
 document.addEventListener("click", (event) => {
-  if (event.target.dataset.type === "edit") {
+  if (event.target.dataset.type === "update") {
+    const li = event.target.closest("li");
+    const child = li.children;
+    for (let index = 0; index < child.length; index++) {
+      child[index].classList.toggle("visually-hidden");
+    }
+  }
+});
+
+document.addEventListener("click", (event) => {
+  if (event.target.dataset.type === "save") {
+    const li = event.target.closest("li");
     const id = event.target.dataset.id;
-    const text = event.target.closest("li");
-    console.log(text.firstElementChild.textContent);
-    const newNote = prompt("Введите новое название").trim();
-    edit(id, newNote);
-    text.firstElementChild.textContent = newNote;
+    const text = document.querySelector(`#edit${id}`).value;
+    if (text) {
+      edit(id, text);
+      li.firstElementChild.textContent = text;
+    }
+    const child = li.children;
+    for (let index = 0; index < child.length; index++) {
+      child[index].classList.toggle("visually-hidden");
+    }
+  }
+});
+document.addEventListener("click", (event) => {
+  if (event.target.dataset.type === "cancel") {
+    const li = event.target.closest("li");
+    const child = li.children;
+    for (let index = 0; index < child.length; index++) {
+      child[index].classList.toggle("visually-hidden");
+    }
   }
 });
 

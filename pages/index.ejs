@@ -38,14 +38,25 @@
           <li
             class="list-group-item d-flex justify-content-between align-items-center"
           >
-            <div data-id="<%= notes[i].id %>"><%= notes[i].title %></div>
+            <div class="" data-id="<%= notes[i].id %>">
+              <%= notes[i].title %>
+            </div>
+            <form method="dialog" name="editNote" class="visually-hidden">
+              <input
+                type="text"
+                class="w-10"
+                data-id="<%= notes[i].id %>"
+                id="edit<%= notes[i].id %>"
+                name="note"
+              />
+            </form>
             <div class="d-flex justify-content-end">
               <button
                 class="btn btn-primary mx-2"
-                data-type="edit"
+                data-type="update"
                 data-id="<%= notes[i].id %>"
               >
-                Редактировать
+                Обновить
               </button>
               <button
                 class="btn btn-danger"
@@ -53,6 +64,22 @@
                 data-id="<%= notes[i].id %>"
               >
                 &times;
+              </button>
+            </div>
+            <div class="d-flex justify-content-end visually-hidden">
+              <button
+                class="btn btn-success mx-2"
+                data-type="save"
+                data-id="<%= notes[i].id %>"
+              >
+                Сохранить
+              </button>
+              <button
+                class="btn btn-danger"
+                data-type="cancel"
+                data-id="<%= notes[i].id %>"
+              >
+                Отменить
               </button>
             </div>
           </li>
